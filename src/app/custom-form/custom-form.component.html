@@ -1,0 +1,9 @@
+<br>
+<form [formGroup]="accountFormGroup">
+  <label for="email"> E-mail </label>
+  <input type="email" id="email" [formControl]="accountFormGroup.get('email')">
+  <br>
+  <br>
+  <label for="password"> Password </label>
+  <input type="password" id="password" [formControl]="accountFormGroup.get('password')">
+</form>
