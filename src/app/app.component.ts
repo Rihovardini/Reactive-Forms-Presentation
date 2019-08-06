@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormGroup, FormBuilder} from '@angular/forms';
-import {Student} from './Student';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, AbstractControl, ValidationErrors, Validators } from '@angular/forms';
+import { Student} from './Student';
+import { Observable, of } from 'rxjs';
+import { map, delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -19,15 +21,26 @@ export class AppComponent implements OnInit {
       middleName: [''],
       lastName: [''],
       account: this.formBuilder.group({
-        email: [''],
-        password: ['']
+        email: ['', [Validators.required], [this.emailAsyncValidator]],
+        password: [''],
+        confirmPassword: ['']
       })
     });
-    console.log(this.studentForm);
+    this.studentForm.valueChanges.subscribe(val => {
+      console.log(this.studentForm, 'studentForm');
+    });
+  }
+
+  public emailAsyncValidator(control: AbstractControl): Observable<ValidationErrors | null> {
+    const email = control.value;
+    return of(email === 'angular@ukr.net').pipe(
+      delay(4000),
+      map(result => result ? { dublicate: true } : null)
+    );
   }
 
   public saveFormValue(): Student {
-    console.log(this.studentForm.value);
+    console.log(this.studentForm.value, 'studentForm Value');
     return this.studentForm.value;
   }
 }
