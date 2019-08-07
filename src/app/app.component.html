@@ -4,6 +4,9 @@
 <form [formGroup]="studentForm" (ngSubmit)="saveFormValue()">
   <label for="firstName"> FirstName: </label>
   <input type="text" id="firstName" [formControl]="studentForm.get('firstName')">
+  <p *ngIf="studentForm.get('firstName').invalid" style="color:red">
+    {{studentForm.get('firstName').errors}}
+  </p>
   <br>
   <br>
   <app-custom-input  [inputControl]="studentForm.get('middleName')"></app-custom-input>
@@ -11,6 +14,9 @@
   <br>
   <label for="lastName"> Last Name: </label>
   <input type="text" id="lastName" [formControl]="studentForm.get('lastName')">
+  <p *ngIf="studentForm.get('lastName').invalid" style="color:red">
+    {{studentForm.get('lastName').errors}}
+  </p>
   <br>
   <br>
   <app-custom-form [accountFormGroup]="studentForm.get('account')"></app-custom-form>

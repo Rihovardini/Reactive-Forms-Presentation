@@ -2,12 +2,14 @@
 <form [formGroup]="accountFormGroup">
   <label for="email"> E-mail </label>
   <input type="email" id="email" [formControl]="accountFormGroup.get('email')">
+  <p *ngIf="accountFormGroup.get('email').invalid" style="color:red">Invalid E-mail</p>
   <br>
   <br>
   <label for="password"> Password </label>
   <input type="password" id="password" [formControl]="accountFormGroup.get('password')">
   <br>
   <br>
-  <label for="confirmPassword"> Password </label>
+  <label for="confirmPassword"> Confirm Password </label>
   <input type="password" id="confirmPassword" [formControl]="accountFormGroup.get('confirmPassword')">
+  <p *ngIf="accountFormGroup.hasError('notMatch')" style="color:red">Passwords don't match</p>
 </form>

@@ -6,9 +6,6 @@ import {FormControl} from '@angular/forms';
   templateUrl: './custom-input.component.html',
   styleUrls: ['./custom-input.component.scss']
 })
-export class CustomInputComponent implements OnInit {
+export class CustomInputComponent {
   @Input() public inputControl: FormControl;
-  ngOnInit() {
-    // console.log(this.inputControl);
-  }
 }

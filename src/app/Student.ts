@@ -8,4 +8,5 @@ export interface Student {
 interface Account {
   email: string;
   password: string;
+  confirmPassword: string;
 }
